@@ -28,4 +28,21 @@ class Psip2D(object):
 		return Psip2D(self.x,self.y)
 
 	def __str__(self):
-		return str(self.x) + " , " + str(self.y)
+		return str(self.x) + ", " + str(self.y)
+
+class Psip3D(object):
+	def __init__(self,x,y,z):
+		self.x=x
+		self.y=y
+		self.z=z
+
+	def move(self,step,radial,azimuthal):
+		self.x+=(step*math.cos(radial)*math.sin(azimuthal))
+		self.y+=(step*math.sin(radial)*math.sin(azimuthal))
+		self.z+=(step*math.cos(azimuthal))
+
+	def replicate(self):
+		return Psip3D(self.x,self.y,self.z)
+
+	def __str__(self):
+		return str(self.x) + ", " + str(self.y) + ", " str(self.z)
