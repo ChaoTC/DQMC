@@ -33,3 +33,27 @@ class Population2D(object):
 	def printPopulation(population):
 		for member in population:
 			print(member)
+
+class Population3D(object):
+
+	@staticmethod
+	def initPopulation(size, xSteps, ySteps, zSteps, xLength, yLength, zLength):
+		xStep = xLength/xSteps
+		yStep = yLength/ySteps
+		zStep = zLength/zSteps
+		population = []
+		for x in range(xSteps):
+			for y in range(ySteps):
+				for z in range (zSteps):
+					xCoordinate = (x * xStep) - (xLength/2)
+					yCoordinate = (y * yStep) - (yLength/2)
+					zCoordinate = (z * yStep) - (zLength/2)
+					copiesAtCoordinate = size/(xSteps * ySteps * zStep)
+					for _ in range(copiesAtCoordinate):
+						population.append(Psip2D(xCoordinate, yCoordinate, zCoordinate))
+		return population
+
+	@staticmethod
+	def printPopulation(population):
+		for member in population:
+			print(member)
