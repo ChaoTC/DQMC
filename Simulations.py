@@ -50,6 +50,7 @@ class HarmonicOscillator1D(Simulation1D):
 	def postProcess(self, population):
 		distribution = Simulation1D.postProcess(self, population)
 
+
 class Simulation2D(object):
 
 	xLength = 2.0
@@ -97,7 +98,53 @@ class HarmonicOscillator2D(Simulation2D):
 		Visualizer2D.visualize("Harmonic Oscillator", distribution, self.xLength, self.yLength, self.xStep, self.yStep)
 	
 
+class Simulation3D(object):
 
+	xLength = 2.0
+	yLength = 2.0
+	zLength = 2.0
+	xSteps = 100
+	ySteps = 100
+	zSteps = 100
+	potentialFunction = ZeroPotential()
+
+	def __init__(self, size, reps):
+		self.size=size
+		self.reps=reps
+		self.xStep=self.xLength/self.xSteps
+		self.yStep=self.yLength/self.ySteps
+		self.zStep=self.zLength/self.zSteps
+
+	def initPopulation(self):
+		population=Population3D.initPopulation(self.size,self.xSteps,self.ySteps,self.zSteps,self.xLength,self.yLength,self.zLength)
+		return population
+
+	def diffuse(self, population):
+		population=Diffuser3D.diffuse(population,self.potentialFunction,self.xStep,self.yStep,self.zStep,self.reps)
+		return population
+
+	def postProcess(self, population):
+		distribution=Counter3D.count(population,self.xLength,self.yLength,self.zLength,self.xSteps,self.ySteps,self.zSteps)
+		return distribution
+		
+class ParticleInABox3D(Simulation3D):
+	def __init__(self, size, reps):
+		self.potentialFunction = ParticleInABoxPotential3D(self.xLength, self.yLength, self.zLength)
+		Simulation3D.__init__(self, size, reps)
+
+	def postProcess(self, population):
+		distribution = Simulation3D.postProcess(self, population)
+		Visualizer3D.visualize("Particle in a Box", distribution, self.xLength, self.yLength, self.zLength, self.xStep, self.yStep, self.zStep)
+
+class HarmonicOscillator3D(Simulation3D):
+	def __init__(self, size, reps):
+		self.potentialFunction = HarmonicOscillatorPotential3D()
+		Simulation3D.__init__(self, size, reps)
+
+	def postProcess(self, population):
+		distribution = Simulation3D.postProcess(self, population)
+		Visualizer3D.visualize("Harmonic Oscillator", distribution, self.xLength, self.yLength, self.zStep, self.xStep, self.yStep, self.zStep)
+	
 
 
 

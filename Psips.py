@@ -45,4 +45,4 @@ class Psip3D(object):
 		return Psip3D(self.x,self.y,self.z)
 
 	def __str__(self):
-		return str(self.x) + ", " + str(self.y) + ", " str(self.z)
+		return str(self.x) + ", " + str(self.y) + ", " + str(self.z)

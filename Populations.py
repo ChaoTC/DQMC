@@ -37,7 +37,7 @@ class Population2D(object):
 class Population3D(object):
 
 	@staticmethod
-	def initPopulation(size,xSteps,ySteps,xSteps,xLength,yLength,zLength):
+	def initPopulation(size,xSteps,ySteps,zSteps,xLength,yLength,zLength):
 		xStep=xLength/xSteps
 		yStep=yLength/ySteps
 		zStep=xLength/zSteps

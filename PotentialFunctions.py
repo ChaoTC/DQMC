@@ -44,11 +44,11 @@ class HarmonicOscillatorPotential2D(object):
 		y = psip.y
 		return (.5*(x**2))+(.5*(y**2))
 
-class BoxWithAWall2D(object):
+# class BoxWithAWall2D(object):
 
-	def __init__(self, xLength, yLength):
-		self.xLength = xLength
-		self.yLength = yLength
+# 	def __init__(self, xLength, yLength):
+# 		self.xLength = xLength
+# 		self.yLength = yLength
 
 	# def calculatePotential(self, psip):
 	# 	x = psip.x
@@ -61,7 +61,27 @@ class BoxWithAWall2D(object):
 	# 		return 1000000
 
 
+class ParticleInABoxPotential3D(object):
 
+	def __init__(self, xLength, yLength, zLength):
+		self.xLength = xLength
+		self.yLength = yLength
+		self.zLength = zLength
 
+	def calculatePotential(self, psip):
+		x = psip.x
+		y = psip.y
+		z = psip.z
+		if x < (self.xLength/2) and x >= -(self.xLength/2) and y < (self.yLength/2) and y >= -(self.yLength/2) and z < (self.xLength/2) and z >= -(self.xLength/2):
+			return 0
+		else:
+			#float("inf") has some weird properties, but this is a good enough approximation
+			return 99999999999999999999999999 
 
+class HarmonicOscillatorPotential3D(object):
 
+	def calculatePotential(self, psip):
+		x = psip.x
+		y = psip.y
+		z = psip.z
+		return (.5*(x**2))+(.5*(y**2))+(.5*(z**2))
