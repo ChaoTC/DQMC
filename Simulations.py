@@ -103,9 +103,9 @@ class Simulation3D(object):
 	xLength = 2.0
 	yLength = 2.0
 	zLength = 2.0
-	xSteps = 100
-	ySteps = 100
-	zSteps = 100
+	xSteps = 50
+	ySteps = 50
+	zSteps = 50
 	potentialFunction = ZeroPotential()
 
 	def __init__(self, size, reps):

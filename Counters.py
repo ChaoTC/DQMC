@@ -29,10 +29,10 @@ class Counter2D:
 class Counter3D:
 
 	@staticmethod
-	def count(population, xLength, yLength, xSteps, ySteps):
-		distribution = np.array([[[0]*(ySteps)]*(xSteps)]*(zSteps))
+	def count(population, xLength, yLength, zLength, xSteps, ySteps, zSteps):
+		distribution = np.array([[[0]*(zSteps)]*(ySteps)]*(xSteps))
 		for psip in population:
-			val = (psip.x+(xLength/2),psip.y+(yLength/2))
+			val = (psip.x+(xLength/2),psip.y+(yLength/2),psip.z+(zLength/2))
 			xIndex = int(round(val[0]/(xLength/xSteps)))
 			yIndex = int(round(val[1]/(yLength/ySteps)))
 			zIndex = int(round(val[2]/(zLength/zSteps)))
