@@ -16,26 +16,26 @@ class Counter1D:
 class Counter2D:
 
 	@staticmethod
-	def count(population, xLength, yLength, xSteps, ySteps):
-		distribution = np.array([[0]*(ySteps)]*(xSteps))
+	def count(population, length, steps):
+		distribution = np.array([[0]*(steps)]*(steps))
 		for psip in population:
-			val = (psip.x+(xLength/2),psip.y+(yLength/2))
-			xIndex = int(round(val[0]/(xLength/xSteps)))
-			yIndex = int(round(val[1]/(yLength/ySteps)))
-			if(xIndex >= 0 and xIndex < xSteps and yIndex >= 0 and yIndex < ySteps):
+			val = (psip.x+(length/2), psip.y+(length/2))
+			xIndex = int(round(val[0]/(length/steps)))
+			yIndex = int(round(val[1]/(length/steps)))
+			if(xIndex >= 0 and xIndex < steps and yIndex >= 0 and yIndex < steps):
 				distribution[xIndex,yIndex]+= 1
 		return distribution
 
 class Counter3D:
 
 	@staticmethod
-	def count(population, xLength, yLength, zLength, xSteps, ySteps, zSteps):
-		distribution = np.array([[[0]*(zSteps)]*(ySteps)]*(xSteps))
+	def count(population, length, steps):
+		distribution = np.array([[[0]*(steps)]*(steps)]*(steps))
 		for psip in population:
-			val = (psip.x+(xLength/2),psip.y+(yLength/2),psip.z+(zLength/2))
-			xIndex = int(round(val[0]/(xLength/xSteps)))
-			yIndex = int(round(val[1]/(yLength/ySteps)))
-			zIndex = int(round(val[2]/(zLength/zSteps)))
-			if(xIndex >= 0 and xIndex < xSteps and yIndex >= 0 and yIndex < ySteps and zIndex >= 0 and zIndez < zSteps):
+			val = (psip.x+(length/2),psip.y+(length/2),psip.z+(length/2))
+			xIndex = int(round(val[0]/(length/steps)))
+			yIndex = int(round(val[1]/(length/steps)))
+			zIndex = int(round(val[2]/(length/steps)))
+			if(xIndex >= 0 and xIndex < steps and yIndex >= 0 and yIndex < steps and zIndex >= 0 and zIndex < steps):
 				distribution[xIndex,yIndex,zIndex]+= 1
 		return distribution
