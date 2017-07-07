@@ -36,6 +36,6 @@ class Counter3D:
 			xIndex = int(round(val[0]/(length/steps)))
 			yIndex = int(round(val[1]/(length/steps)))
 			zIndex = int(round(val[2]/(length/steps)))
-			if(xIndex >= 0 and xIndex < steps and yIndex >= 0 and yIndex < steps and zIndex >= 0 and zIndez < steps):
+			if(xIndex >= 0 and xIndex < steps and yIndex >= 0 and yIndex < steps and zIndex >= 0 and zIndex < steps):
 				distribution[xIndex,yIndex,zIndex]+= 1
 		return distribution

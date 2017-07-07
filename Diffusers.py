@@ -115,4 +115,5 @@ class Diffuser3D(object):
 						if rando>check:
 							del population[i]
 
+		return population
 

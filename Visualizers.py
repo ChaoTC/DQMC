@@ -25,7 +25,9 @@ class Visualizer3D(object):
 
 	@staticmethod
 	def visualize(title, distribution, length, stepLength):
-		for z in xrange(-length/2, length/2, 0.025*length):
+		steps = length/stepLength
+		z=0
+		while(z<steps):
 			y, x = np.mgrid[slice(-length/2, length/2 + stepLength, stepLength), slice(-length/2, length/2 + stepLength, stepLength)]
 			t = (distribution[:,:,z])
 			t_min, t_max = 0, np.abs(z).max()
@@ -36,3 +38,4 @@ class Visualizer3D(object):
 			plt.axis([x.min(), x.max(), y.min(), y.max()])
 			plt.colorbar()
 			plt.show()
+			z+=5
