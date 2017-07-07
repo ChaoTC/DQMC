@@ -49,7 +49,7 @@ if __name__ == "__main__":
 	REPS = 400
 	NUM_PROCESSES = 4
 
-	simulation = ParticleInABox3D(SIZE, REPS)
+	simulation = ParticleInABox2D(SIZE, REPS)
 	runner = DQMCRunner(simulation, NUM_PROCESSES)
 	runner.run()
 	print "Finished"
