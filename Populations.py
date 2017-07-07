@@ -4,10 +4,10 @@ class Population1D(object):
 
 	@staticmethod
 	def initPopulation(size, steps, length):
-		xStep = length/steps
+		stepLength = length/steps
 		population = []
 		for x in range(steps):
-			xCoordinate = (x * xStep) - (length/2)
+			xCoordinate = (x * stepLength) - (length/2)
 			copiesAtCoordinate = size/steps
 			for y in range(copiesAtCoordinate):
 				population.append(Psip1D(xCoordinate))
@@ -16,15 +16,14 @@ class Population1D(object):
 class Population2D(object):
 
 	@staticmethod
-	def initPopulation(size, xSteps, ySteps, xLength, yLength):
-		xStep = xLength/xSteps
-		yStep = yLength/ySteps
+	def initPopulation(size, steps, length):
+		stepLength = length/steps
 		population = []
-		for x in range(xSteps):
-			for y in range(ySteps):
-				xCoordinate = (x * xStep) - (xLength/2)
-				yCoordinate = (y * yStep) - (yLength/2)
-				copiesAtCoordinate = size/(xSteps * ySteps)
+		for x in range(steps):
+			for y in range(steps):
+				xCoordinate = (x * stepLength) - (length/2)
+				yCoordinate = (y * stepLength) - (length/2)
+				copiesAtCoordinate = size/(steps*steps)
 				for _ in range(copiesAtCoordinate):
 					population.append(Psip2D(xCoordinate, yCoordinate))
 		return population
@@ -37,18 +36,16 @@ class Population2D(object):
 class Population3D(object):
 
 	@staticmethod
-	def initPopulation(size,xSteps,ySteps,zSteps,xLength,yLength,zLength):
-		xStep=xLength/xSteps
-		yStep=yLength/ySteps
-		zStep=xLength/zSteps
+	def initPopulation(size, steps, length):
+		stepLength = length/steps
 		population=[]
-		for x in range(xSteps):
-			for y in range(ySteps):
-				for z in range(zSteps):
-					xCoordinate=(x*xStep)-(xLength/2)
-					yCoordinate=(y*yStep)-(yLength/2)
-					zCoordinate=(z*zStep)-(zLength/2)
-					copiesAtCoordinate=size/(xSteps*ySteps*zSteps)
+		for x in range(steps):
+			for y in range(steps):
+				for z in range(steps):
+					xCoordinate=(x*stepLength)-(length/2)
+					yCoordinate=(y*stepLength)-(length/2)
+					zCoordinate=(z*stepLength)-(length/2)
+					copiesAtCoordinate=size/(steps*steps*steps)
 					for _ in range(copiesAtCoordinate):
 						population.append(Psip3D(xCoordinate,yCoordinate,zCoordinate))
 		return population

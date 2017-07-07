@@ -24,14 +24,13 @@ class HarmonicOscillatorPotential1D(object):
 
 class ParticleInABoxPotential2D(object):
 
-	def __init__(self, xLength, yLength):
-		self.xLength = xLength
-		self.yLength = yLength
+	def __init__(self, length):
+		self.length = length
 
 	def calculatePotential(self, psip):
 		x = psip.x
 		y = psip.y
-		if x < (self.xLength/2) and x >= -(self.xLength/2) and y < (self.yLength/2) and y >= -(self.yLength/2):
+		if x < (self.length/2) and x >= -(self.length/2) and y < (self.length/2) and y >= -(self.length/2):
 			return 0
 		else:
 			#float("inf") has some weird properties, but this is a good enough approximation
@@ -63,16 +62,14 @@ class HarmonicOscillatorPotential2D(object):
 
 class ParticleInABoxPotential3D(object):
 
-	def __init__(self, xLength, yLength, zLength):
-		self.xLength = xLength
-		self.yLength = yLength
-		self.zLength = zLength
+	def __init__(self, length):
+		self.length = length
 
 	def calculatePotential(self, psip):
 		x = psip.x
 		y = psip.y
 		z = psip.z
-		if x < (self.xLength/2) and x >= -(self.xLength/2) and y < (self.yLength/2) and y >= -(self.yLength/2) and z < (self.xLength/2) and z >= -(self.xLength/2):
+		if x < (self.length/2) and x >= -(self.length/2) and y < (self.length/2) and y >= -(self.length/2) and z < (self.length/2) and z >= -(self.length/2):
 			return 0
 		else:
 			#float("inf") has some weird properties, but this is a good enough approximation

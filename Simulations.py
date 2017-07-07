@@ -17,8 +17,8 @@ class Simulation1D(object):
 		return Population1D.initPopulation(self.size, self.steps, self.length)
 
 	def diffuse(self, population):
-		xStep = self.length/self.steps
-		population = Diffuser1D.diffuse(population, self.potentialFunction, xStep, self.reps)
+		stepLength = self.length/self.steps
+		population = Diffuser1D.diffuse(population, self.potentialFunction, stepLength, self.reps)
 		return population
 
 	def postProcess(self, population):
@@ -53,40 +53,37 @@ class HarmonicOscillator1D(Simulation1D):
 
 class Simulation2D(object):
 
-	xLength = 2.0
-	yLength = 2.0
-	xSteps = 100
-	ySteps = 100
+	length = 2.0
+	steps = 100
 	potentialFunction = ZeroPotential()
 
 	def __init__(self, size, reps):
 		self.size = size
 		self.reps = reps
 
-		self.xStep = self.xLength/self.xSteps
-		self.yStep = self.yLength/self.ySteps
+		self.stepLength = self.length/self.steps
 
 	def initPopulation(self):
-		population = Population2D.initPopulation(self.size, self.xSteps, self.ySteps, self.xLength, self.yLength)
+		population = Population2D.initPopulation(self.size, self.steps, self.length)
 		return population
 		
 
 	def diffuse(self, population):
-		population = Diffuser2D.diffuse(population, self.potentialFunction, self.xStep, self.yStep, self.reps)
+		population = Diffuser2D.diffuse(population, self.potentialFunction, self.stepLength, self.reps)
 		return population
 
 	def postProcess(self, population):
-		distribution = Counter2D.count(population, self.xLength, self.yLength, self.xSteps, self.ySteps)
+		distribution = Counter2D.count(population, self.length, self.steps)
 		return distribution
 		
 class ParticleInABox2D(Simulation2D):
 	def __init__(self, size, reps):
-		self.potentialFunction = ParticleInABoxPotential2D(self.xLength, self.yLength)
+		self.potentialFunction = ParticleInABoxPotential2D(self.length)
 		Simulation2D.__init__(self, size, reps)
 
 	def postProcess(self, population):
 		distribution = Simulation2D.postProcess(self, population)
-		Visualizer2D.visualize("Particle in a Box", distribution, self.xLength, self.yLength, self.xStep, self.yStep)
+		Visualizer2D.visualize("Particle in a Box", distribution, self.length, self.stepLength)
 
 class HarmonicOscillator2D(Simulation2D):
 	def __init__(self, size, reps):
@@ -95,46 +92,41 @@ class HarmonicOscillator2D(Simulation2D):
 
 	def postProcess(self, population):
 		distribution = Simulation2D.postProcess(self, population)
-		Visualizer2D.visualize("Harmonic Oscillator", distribution, self.xLength, self.yLength, self.xStep, self.yStep)
+		Visualizer2D.visualize("Harmonic Oscillator", distribution, self.length, self.stepLength)
 	
 
 class Simulation3D(object):
 
-	xLength = 2.0
-	yLength = 2.0
-	zLength = 2.0
-	xSteps = 50
-	ySteps = 50
-	zSteps = 50
+	length = 2.0
+	steps = 50
 	potentialFunction = ZeroPotential()
 
 	def __init__(self, size, reps):
 		self.size=size
 		self.reps=reps
-		self.xStep=self.xLength/self.xSteps
-		self.yStep=self.yLength/self.ySteps
-		self.zStep=self.zLength/self.zSteps
+		
+		self.stepLength = self.length/self.steps
 
 	def initPopulation(self):
-		population=Population3D.initPopulation(self.size,self.xSteps,self.ySteps,self.zSteps,self.xLength,self.yLength,self.zLength)
+		population=Population3D.initPopulation(self.size, self.steps, self.length)
 		return population
 
 	def diffuse(self, population):
-		population=Diffuser3D.diffuse(population,self.potentialFunction,self.xStep,self.yStep,self.zStep,self.reps)
+		population=Diffuser3D.diffuse(population, self.potentialFunction, self.stepLength,self.reps)
 		return population
 
 	def postProcess(self, population):
-		distribution=Counter3D.count(population,self.xLength,self.yLength,self.zLength,self.xSteps,self.ySteps,self.zSteps)
+		distribution=Counter3D.count(population, self.length, self.steps)
 		return distribution
 		
 class ParticleInABox3D(Simulation3D):
 	def __init__(self, size, reps):
-		self.potentialFunction = ParticleInABoxPotential3D(self.xLength, self.yLength, self.zLength)
+		self.potentialFunction = ParticleInABoxPotential3D(self.length)
 		Simulation3D.__init__(self, size, reps)
 
 	def postProcess(self, population):
 		distribution = Simulation3D.postProcess(self, population)
-		Visualizer3D.visualize("Particle in a Box", distribution, self.xLength, self.yLength, self.zLength, self.xStep, self.yStep, self.zStep)
+		Visualizer3D.visualize("Particle in a Box", distribution, self.length, self.stepLength)
 
 class HarmonicOscillator3D(Simulation3D):
 	def __init__(self, size, reps):
@@ -143,7 +135,7 @@ class HarmonicOscillator3D(Simulation3D):
 
 	def postProcess(self, population):
 		distribution = Simulation3D.postProcess(self, population)
-		Visualizer3D.visualize("Harmonic Oscillator", distribution, self.xLength, self.yLength, self.zStep, self.xStep, self.yStep, self.zStep)
+		Visualizer3D.visualize("Harmonic Oscillator", distribution, self.length, self.stepLength)
 	
 
 

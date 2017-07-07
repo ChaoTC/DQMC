@@ -46,8 +46,8 @@ class DQMCRunner(object):
 
 if __name__ == "__main__":
 	SIZE = 125000
-	REPS = 400
-	NUM_PROCESSES = 4
+	REPS = 10
+	NUM_PROCESSES = 1
 
 	simulation = ParticleInABox3D(SIZE, REPS)
 	runner = DQMCRunner(simulation, NUM_PROCESSES)

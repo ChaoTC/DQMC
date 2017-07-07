@@ -6,8 +6,8 @@ import numpy as np
 class Visualizer2D(object):
 
 	@staticmethod
-	def visualize(title, distribution, xLength, yLength, xStep, yStep):
-		y, x = np.mgrid[slice(-yLength/2, yLength/2 + yStep, yStep), slice(-xLength/2, xLength/2 + xStep, xStep)]
+	def visualize(title, distribution, length, stepLength):
+		y, x = np.mgrid[slice(-length/2, length/2 + stepLength, stepLength), slice(-length/2, length/2 + stepLength, stepLength)]
 		z = (distribution)
 		z_min, z_max = 0, np.abs(z).max()
 
@@ -24,9 +24,9 @@ class Visualizer2D(object):
 class Visualizer3D(object):
 
 	@staticmethod
-	def visualize(title, distribution, xLength, yLength, zLength, xStep, yStep, zStep):
-		for z in xrange(-zLength/2,zLength/2,0.025*zLength):
-			y, x = np.mgrid[slice(-yLength/2, yLength/2 + yStep, yStep), slice(-xLength/2, xLength/2 + xStep, xStep)]
+	def visualize(title, distribution, length, stepLength):
+		for z in xrange(-length/2, length/2, 0.025*length):
+			y, x = np.mgrid[slice(-length/2, length/2 + stepLength, stepLength), slice(-length/2, length/2 + stepLength, stepLength)]
 			t = (distribution[:,:,z])
 			t_min, t_max = 0, np.abs(z).max()
 
