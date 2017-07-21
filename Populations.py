@@ -54,3 +54,36 @@ class Population3D(object):
 	def printPopulation(population):
 		for member in population:
 			print(member)
+
+class PopulationH(object):
+
+	@staticmethod
+	def initPopulation(size, stepLength):
+		population = []
+		for i in range(-300,300):
+			for _ in range(size/1800):
+				population.append(PsipH(0,0,0,0,0,i*stepLength))
+				population.append(PsipH(0,0,0,0,i*stepLength,0))
+				population.append(PsipH(0,0,0,i*stepLength,0,0))
+		return population
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

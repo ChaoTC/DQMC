@@ -137,7 +137,22 @@ class HarmonicOscillator3D(Simulation3D):
 		distribution = Simulation3D.postProcess(self, population)
 		Visualizer3D.visualize("Harmonic Oscillator", distribution, self.length, self.stepLength)
 	
+class HydrogenAtom(object):
+	bohrRad = 5.29177E-11
+	stepLength = bohrRad/100
+	potentialFunction = HydrogenicPotential()
 
+	def __init__(self, size, reps):
+		self.size=size
+		self.reps=reps
+
+	def initPopulation(self):
+		population = PopulationH.initPopulation(self.size, self.stepLength)
+		return population
+
+	def diffuse(self, population):
+		population=DiffuserH.diffuse(population, self.potentialFunction, self.stepLength,self.reps)
+		return population
 
 
 

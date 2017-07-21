@@ -82,3 +82,8 @@ class HarmonicOscillatorPotential3D(object):
 		y = psip.y
 		z = psip.z
 		return (.5*(x**2))+(.5*(y**2))+(.5*(z**2))
+
+class HydrogenicPotential(object):
+
+	def calculatePotential(self, psip):
+		x = 5

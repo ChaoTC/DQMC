@@ -46,8 +46,8 @@ class DQMCRunner(object):
 
 if __name__ == "__main__":
 	SIZE = 125000
-	REPS = 30
-	NUM_PROCESSES = 4
+	REPS = 500
+	NUM_PROCESSES = 2
 
 	simulation = HarmonicOscillator3D(SIZE, REPS)
 	runner = DQMCRunner(simulation, NUM_PROCESSES)
