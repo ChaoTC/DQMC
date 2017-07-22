@@ -1,3 +1,5 @@
+import math
+
 class ZeroPotential(object):
 	
 	def calculatePotential(self, psip):
@@ -85,5 +87,23 @@ class HarmonicOscillatorPotential3D(object):
 
 class HydrogenicPotential(object):
 
+	eps0 = 8.854188E-12		#Permittivity of Vacuus	(F/m)
+	eCharge = 1.602E-19		#Elementary Charge (C)
+
+
 	def calculatePotential(self, psip):
-		x = 5
+		radius = psip.radius()
+		return -((self.eCharge**2)/(4*math.pi*self.eps0*abs(radius)))
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -95,7 +95,7 @@ class Diffuser3D(object):
 			for i in xrange(len(population)-1,0,-1):
 				radial=random.random()*(2*math.pi)
 				azimuthal=random.random()*math.pi
-				step=random.gauss(4*stepLength,stepLength)
+				step=random.gauss(100*stepLength,stepLength)
 				population[i].move(step,radial,azimuthal)
 				potentials.append(potentialFunction.calculatePotential(population[i]))
 			avgPot=np.mean(potentials)
@@ -121,9 +121,10 @@ class DiffuserH(object):
 	@staticmethod
 	def diffuse(population, potentialFunction, stepLength, reps):
 		startSize=len(population)
+		factor = 1.0/500
 
 		for _ in range(reps):
-			print len(population)
+			print _, len(population)
 			potentials=[]
 			while len(population)>(2*startSize):
 				population=population[1::2]
@@ -134,11 +135,16 @@ class DiffuserH(object):
 			for i in xrange(len(population)-1,0,-1):
 				pradial=random.random()*(2*math.pi)
 				pazimuthal=random.random()*math.pi
-				pstep=random.gauss(4*stepLength,stepLength)
+				pstep=factor*random.gauss(stepLength,stepLength/3)
 				eradial=random.random()*(2*math.pi)
 				eazimuthal=random.random()*math.pi
+				estep = factor*1837*random.gauss(stepLength,stepLength/3)
+				"""Electronic coordinates vary at a different rate than nucleic coordinates
+				The different diffusion coefficients are hbar/2me and hbar/2mp
+				they differ by a factor of mp/me, or ~1837
+				Therefore, we are allowing the """
 				
-				population[i].move(step,radial,azimuthal)
+				population[i].move(pstep,pradial,pazimuthal,estep,eradial,eazimuthal)
 				potentials.append(potentialFunction.calculatePotential(population[i]))
 			avgPot=np.mean(potentials)
 
@@ -147,12 +153,16 @@ class DiffuserH(object):
 				iPot=potentialFunction.calculatePotential(population[i])
 				if iPot<avgPot:
 					rando=random.random()
+					print avgPot-iPot
 					check=math.exp(-1*(avgPot-iPot))
+					# print "Replicating: random number", rando, ". Check", check
 					if rando>check:
 						population.append(population[i].replicate())
 				elif iPot>avgPot:
 					rando=random.random()
 					check=math.exp(-1*(iPot-avgPot))
+					print avgPot-iPot
+					# print "Dying :( : random number", rando, ". Check", check
 					if rando>check:
 						del population[i]
 

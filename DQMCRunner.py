@@ -45,11 +45,11 @@ class DQMCRunner(object):
 		self.postProcess(outputPopulations)
 
 if __name__ == "__main__":
-	SIZE = 125000
-	REPS = 500
-	NUM_PROCESSES = 2
+	SIZE = 18000
+	REPS = 300
+	NUM_PROCESSES = 1
 
-	simulation = HarmonicOscillator3D(SIZE, REPS)
+	simulation = HydrogenAtom(SIZE, REPS)
 	runner = DQMCRunner(simulation, NUM_PROCESSES)
 	runner.run()
 	print "Finished"

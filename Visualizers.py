@@ -4,6 +4,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 import imageio
 
+class Visualizer1D(object):
+
+	@staticmethod
+	def visualize(title, distribution, stepLength, stepsCounted):
+		
+		xList = []
+		#In units of 1/bohrRad (gnuomph)
+		for x in range(300):
+			xList.append(x)
+
+		plt.title(title)
+		plt.scatter(xList, distribution)
+		plt.axis([0, stepsCounted, 0, max(distribution)])
+		plt.show()
+
+
 class Visualizer2D(object):
 
 	@staticmethod

@@ -47,11 +47,9 @@ class Psip3D(object):
 	def __str__(self):
 		return str(self.x) + ", " + str(self.y) + ", " + str(self.z)
 
-def PsipH(object):
+class PsipH(object):
 
-	elecFactor = 1837
-
-	def __init__(self,px, py, pz, ex, ey, ez):
+	def __init__(self, px, py, pz, ex, ey, ez):
 		self.px = px
 		self.py = py
 		self.pz = pz
@@ -66,6 +64,9 @@ def PsipH(object):
 		self.ex+=(estep*math.cos(eradial)*math.sin(eazimuthal))
 		self.ey+=(estep*math.sin(eradial)*math.sin(eazimuthal))
 		self.ez+=(estep*math.cos(eazimuthal))
+
+	def radius(self):
+		return math.sqrt(((self.px-self.ex)**2) + ((self.py-self.ey)**2) + ((self.pz-self.ez)**2))
 
 	def replicate(self):
 		return PsipH(self.px,self.py,self.pz,self.ex,self.ey,self.ez)

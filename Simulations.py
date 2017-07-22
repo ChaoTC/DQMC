@@ -154,6 +154,10 @@ class HydrogenAtom(object):
 		population=DiffuserH.diffuse(population, self.potentialFunction, self.stepLength,self.reps)
 		return population
 
+	def postProcess(self, population):
+		stepsCounted = 300
+		distribution = CounterH.count(population, self.stepLength, stepsCounted)
+		Visualizer1D.visualize("Hydrogen Atom!?", distribution, self.stepLength, stepsCounted)
 
 
 

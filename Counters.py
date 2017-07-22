@@ -39,3 +39,28 @@ class Counter3D:
 			if(xIndex >= 0 and xIndex < steps and yIndex >= 0 and yIndex < steps and zIndex >= 0 and zIndex < steps):
 				distribution[xIndex,yIndex,zIndex]+= 1
 		return distribution
+
+class CounterH:
+
+	@staticmethod
+	def count(population, stepLength, stepsCounted):
+		radialCount = []
+		for psip in population:
+			radius = psip.radius()
+			radialCount.append(radius)
+		distribution = [0] * stepsCounted
+		numOutliers = 0
+		for radius in radialCount:
+			index = int(radius/stepLength)
+			if(index < stepsCounted):
+				distribution[index] +=1
+			else:
+				numOutliers += 1
+		print numOutliers
+		return distribution
+
+
+
+
+
+
